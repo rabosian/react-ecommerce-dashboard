@@ -1,8 +1,10 @@
 import React from 'react'
 import { Grid, Paper, Avatar, TextField, Button } from '@mui/material'
+
+
 const Loginpage = () => {
   return (
-    <div><Navbar />
+    <div>
     <Grid align="center">
       <Paper elevation={20}>
         <Grid align="center">

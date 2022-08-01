@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import UserIcon from "@mui/icons-material/PersonOutline";
 import LogoIcon from "@mui/icons-material/Checkroom";
 import SearchIcon from "@mui/icons-material/Search";
-import { IconButton, TextField } from "@mui/material";
-import { Navigate } from 'react-router-dom'
+import { IconButton } from "@mui/material";
+import { Navigate } from "react-router-dom";
+import Loginpage from "../pages/Loginpage";
+import ProductAll from "../pages/ProductAll";
 
 const Navbar = () => {
+  // temporary loginClick
+  const [user, setUser] = useState(false);
+
+  const toggleClick = (prev) => {
+    return user ? <Loginpage /> : <ProductAll />
+  };
+
   const menuList = [
     "Women",
     "Men",
@@ -18,14 +27,14 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="login-btn">
+      <div className="login-btn" onClick={toggleClick}>
         <IconButton>
           <UserIcon />
           LOGIN
         </IconButton>
       </div>
       <div className="logo">
-          <LogoIcon fontSize="large" />
+        <LogoIcon fontSize="large" />
       </div>
       <div className="menu-section">
         <ul className="menu-list">
