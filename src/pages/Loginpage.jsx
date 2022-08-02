@@ -5,8 +5,8 @@ import { Grid, Paper, Avatar, TextField, Button } from '@mui/material'
 const Loginpage = () => {
   return (
     <div>
-    <Grid align="center">
-      <Paper elevation={20}>
+    <Grid align="center" sx={{mt: 5}}>
+      <Paper sx={{padding: 7, width: 400}}>
         <Grid align="center">
           <Avatar></Avatar>
           <h2>Log In</h2>
@@ -33,6 +33,8 @@ const Loginpage = () => {
             type="submit"
             variant="contained"
             color="primary"
+            sx={{ mt: 4}}
+            // onClick={()=>}
           >
             Log In
           </Button>

@@ -3,16 +3,13 @@ import UserIcon from "@mui/icons-material/PersonOutline";
 import LogoIcon from "@mui/icons-material/Checkroom";
 import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
-import { Navigate } from "react-router-dom";
-import Loginpage from "../pages/Loginpage";
+import { useNavigate } from "react-router-dom";
 import ProductAll from "../pages/ProductAll";
 
 const Navbar = () => {
-  // temporary loginClick
-  const [user, setUser] = useState(false);
-
-  const toggleClick = (prev) => {
-    return user ? <Loginpage /> : <ProductAll />
+  const navigate = useNavigate();
+  const loginClick = () => {
+    navigate("/login");
   };
 
   const menuList = [
@@ -27,14 +24,14 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="login-btn" onClick={toggleClick}>
+      <div className="login-btn" onClick={loginClick}>
         <IconButton>
           <UserIcon />
           LOGIN
         </IconButton>
       </div>
       <div className="logo">
-        <LogoIcon fontSize="large" />
+        <LogoIcon fontSize="large" sx={{cursor: 'pointer'}} onClick={() => navigate('/')} />
       </div>
       <div className="menu-section">
         <ul className="menu-list">
