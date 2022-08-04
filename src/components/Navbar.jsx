@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UserIcon from "@mui/icons-material/PersonOutline";
 import LogoIcon from "@mui/icons-material/Checkroom";
 import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = ({user, setUser}) => {
+const Navbar = ({user, setUser, setSearchResult}) => {
   const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState('')
+  
+
   const loginClick = () => {
     navigate("/login")
     setUser(prev => !prev)
@@ -42,7 +45,16 @@ const Navbar = ({user, setUser}) => {
 
         <div className="search-bar">
           <SearchIcon fontSize="small" />
-          <input type="text" placeholder="search for" />
+          <input 
+            type="text" 
+            placeholder="search for"
+            value={inputValue}
+            onChange={(e) => {
+              setInputValue(e.target.value)
+              setSearchResult(e.target.value)
+            }}
+           />
+
         </div>
       </div>
     </div>

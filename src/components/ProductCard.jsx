@@ -17,7 +17,13 @@ const ProductCard = ({ item }) => {
       onClick={showDetail}
     >
       <img width="280px" height="450px" src={item?.img} />
-      <Typography fontSize="0.8rem">{item?.choice ? "Conscious choice" : ""}</Typography>
+      <Typography 
+        fontSize="0.8rem"
+        fontWeight='bold' 
+        color="#d54425" 
+      >
+        {item?.choice ? "Conscious choice" : ""}
+      </Typography>
       <Typography 
         fontSize="1rem" 
         color="yellowgreen" 

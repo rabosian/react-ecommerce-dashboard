@@ -8,13 +8,13 @@ import PrivateRoute from "./route/PrivateRoute";
 
 function App() {
   const [user, setUser] = useState(false);
-
+  const [searchResult, setSearchResult] = useState('')
 
   return (
     <div className="App">
-      <Navbar user={user} setUser={setUser} />
+      <Navbar user={user} setUser={setUser} setSearchResult={setSearchResult} />
       <Routes>
-        <Route path="/" element={<ProductAll />} />
+        <Route path="/" element={<ProductAll searchResult={searchResult} />} />
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
         <Route path="/products/:id" element={<PrivateRoute user={user} />} />
       </Routes>

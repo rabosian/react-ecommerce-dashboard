@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { CircularProgress, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import ProductCard from "../components/ProductCard";
 
-const ProductAll = () => {
+const ProductAll = ({ searchResult }) => {
   const [products, setProducts] = useState([]);
   const getProducts = async () => {
     try {
@@ -22,9 +22,17 @@ const ProductAll = () => {
   return (
     <div>
       <Grid container>
-        {products.map((item, index) => {
-          return <ProductCard item={item} key={index} />;
-        })}
+        {searchResult ? 
+          products.filter((item) => {
+            return item.title.includes(searchResult)
+          }).map((item, index) => {
+            return <ProductCard item={item} key={index} />;
+          })
+        :
+          products.map((item, index) => {
+            return <ProductCard item={item} key={index} />;
+          })
+        }
       </Grid>
     </div>
   );
