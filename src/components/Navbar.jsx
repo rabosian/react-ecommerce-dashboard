@@ -5,10 +5,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({user, setUser}) => {
   const navigate = useNavigate();
   const loginClick = () => {
-    navigate("/login");
+    navigate("/login")
+    setUser(prev => !prev)
   };
 
   const menuList = [
@@ -24,9 +25,9 @@ const Navbar = () => {
   return (
     <div>
       <div className="login-btn" onClick={loginClick}>
-        <IconButton>
+        <IconButton size='small' sx={{mt: 2}}>
           <UserIcon />
-          LOGIN
+          {user ? 'LOGOUT' : 'LOGIN'}
         </IconButton>
       </div>
       <div className="logo">
@@ -34,8 +35,8 @@ const Navbar = () => {
       </div>
       <div className="menu-section">
         <ul className="menu-list">
-          {menuList.map((item) => (
-            <li>{item}</li>
+          {menuList.map((item, index) => (
+            <li key={index}>{item}</li>
           ))}
         </ul>
 

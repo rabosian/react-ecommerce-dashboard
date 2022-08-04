@@ -1,16 +1,22 @@
-import React from 'react'
-import { Grid, Paper, Avatar, TextField, Button } from '@mui/material'
+import React from "react";
+import { Grid, Paper, Avatar, TextField, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
+const Loginpage = ({ setUser }) => {
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    navigate("/");
+    setUser(true)
+  };
 
-const Loginpage = () => {
   return (
     <div>
-    <Grid align="center" sx={{mt: 5}}>
-      <Paper sx={{padding: 7, width: 400}}>
-        <Grid align="center">
-          <Avatar></Avatar>
-          <h2>Log In</h2>
-        </Grid>
+      <Grid align="center" sx={{ mt: 5 }}>
+        <Paper sx={{ padding: 7, width: 400 }}>
+          <Grid align="center">
+            <Avatar></Avatar>
+            <h2>Log In</h2>
+          </Grid>
           <TextField
             required
             variant="standard"
@@ -25,22 +31,20 @@ const Loginpage = () => {
             fullWidth
             label="Password"
           />
-          {/* <FormControlLabel
-            control={<Checkbox name="checkedA" />}
-            label="Remember me"
-          /> */}
+
           <Button
-            type="submit"
             variant="contained"
             color="primary"
-            sx={{ mt: 4}}
-            // onClick={()=>}
+            sx={{ mt: 4 }}
+            style={{ backgroundColor: "#11262f" }}
+            onClick={handleLogin}
           >
             Log In
           </Button>
-      </Paper>
-    </Grid></div>
-  )
-}
+        </Paper>
+      </Grid>
+    </div>
+  );
+};
 
-export default Loginpage
+export default Loginpage;

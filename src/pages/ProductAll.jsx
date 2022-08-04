@@ -21,9 +21,9 @@ const ProductAll = () => {
 
   return (
     <div>
-      <Grid container justifyContent="space-evenly">
-        {products.map((item) => {
-          return <ProductCard item={item} />;
+      <Grid container>
+        {products.map((item, index) => {
+          return <ProductCard item={item} key={index} />;
         })}
       </Grid>
     </div>

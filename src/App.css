@@ -3,7 +3,7 @@
 }
 
 .App {
-  max-width: 1000px;
+  max-width: 1500px;
   margin: auto;
 }
 
@@ -46,8 +46,13 @@
   outline: none;
 }
 
+.product-card:hover {
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.1);
+}
+
 @media screen and (max-width: 850px) {
   .search-bar input {
-    display: none;
+    visibility: hidden;
   }
 }
