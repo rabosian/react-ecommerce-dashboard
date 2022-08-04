@@ -4,7 +4,6 @@ import LogoIcon from "@mui/icons-material/Checkroom";
 import SearchIcon from "@mui/icons-material/Search";
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import ProductAll from "../pages/ProductAll";
 
 const Navbar = () => {
   const navigate = useNavigate();

@@ -20,6 +20,7 @@
 }
 .menu-section {
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 .menu-list {
@@ -45,3 +46,8 @@
   outline: none;
 }
 
+@media screen and (max-width: 850px) {
+  .search-bar input {
+    display: none;
+  }
+}
