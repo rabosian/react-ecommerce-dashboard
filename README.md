@@ -1,3 +1,6 @@
+Project published on [react-shopping-app](https://main--rabosian-shopping.netlify.app/)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
