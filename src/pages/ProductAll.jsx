@@ -10,8 +10,9 @@ const ProductAll = () => {
   const getProducts = async () => {
     try {
       let searchQuery = query.get("q") || "";
-      console.log("query: ", searchQuery);
-      let url = `https://my-json-server.typicode.com/rabosian/shopping-app-json/products?q=${searchQuery}`;
+      // console.log("query: ", searchQuery);
+      let url = `https://my-json-server.typicode.com/rabosian/react-shopping-app
+      /products?q=${searchQuery}`;
       let response = await fetch(url);
       let data = await response.json();
       setProducts(data);
