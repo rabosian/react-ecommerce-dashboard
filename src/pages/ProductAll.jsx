@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import ProductCard from "../components/ProductCard";
+import { useSearchParams } from "react-router-dom";
 
-const ProductAll = ({ searchResult }) => {
+const ProductAll = () => {
   const [products, setProducts] = useState([]);
+  const [query, setQuery] = useSearchParams();
+
   const getProducts = async () => {
     try {
-      let url = `http://localhost:5000/products`;
+      let searchQuery = query.get("q") || "";
+      console.log("query: ", searchQuery);
+      let url = `https://my-json-server.typicode.com/rabosian/shopping-app-json/products?q=${searchQuery}`;
       let response = await fetch(url);
       let data = await response.json();
       setProducts(data);
@@ -17,12 +22,15 @@ const ProductAll = ({ searchResult }) => {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [query]);
 
   return (
     <div>
       <Grid container>
-        {searchResult ? 
+        {products.map((item, index) => {
+          return <ProductCard item={item} key={index} />;
+        })}
+        {/* {searchResult ? 
           products.filter((item) => {
             return item.title.includes(searchResult)
           }).map((item, index) => {
@@ -32,7 +40,7 @@ const ProductAll = ({ searchResult }) => {
           products.map((item, index) => {
             return <ProductCard item={item} key={index} />;
           })
-        }
+        } */}
       </Grid>
     </div>
   );
