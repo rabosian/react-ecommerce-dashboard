@@ -21,7 +21,6 @@ const ProductAll = () => {
 
   useEffect(() => {
     getProducts();
-    console.log(products)
   }, [query]);
 
   return (
