@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Paper, Avatar, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authAction } from "../redux/actions/authAction";
 
-const Loginpage = ({ setUser }) => {
+const Loginpage = () => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleLogin = () => {
+    dispatch(authAction.login(email, password));
     navigate("/");
-    setUser(true)
   };
 
   return (
@@ -23,6 +29,7 @@ const Loginpage = ({ setUser }) => {
             type="email"
             fullWidth
             label="Email"
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             required
@@ -30,6 +37,7 @@ const Loginpage = ({ setUser }) => {
             type="password"
             fullWidth
             label="Password"
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           <Button

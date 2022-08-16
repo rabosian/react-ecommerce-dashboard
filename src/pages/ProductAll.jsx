@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import ProductCard from "../components/ProductCard";
 import { useSearchParams } from "react-router-dom";
+import { productAction } from "../redux/actions/productAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductAll = () => {
-  const [products, setProducts] = useState([]);
+  const products = useSelector((state) => state.product.products);
   const [query, setQuery] = useSearchParams();
+  const dispatch = useDispatch();
 
-  const getProducts = async () => {
+  const getProducts = () => {
     try {
       let searchQuery = query.get("q") || "";
-      // console.log("query: ", searchQuery);
-      let url = `https://my-json-server.typicode.com/rabosian/react-shopping-app
-      /products?q=${searchQuery}`;
-      let response = await fetch(url);
-      let data = await response.json();
-      setProducts(data);
+      dispatch(productAction.getProducts(searchQuery));
     } catch (e) {
       console.log(e);
     }
@@ -23,25 +21,21 @@ const ProductAll = () => {
 
   useEffect(() => {
     getProducts();
+    console.log(products)
   }, [query]);
 
   return (
     <div>
-      <Grid container>
-        {products.map((item, index) => {
-          return <ProductCard item={item} key={index} />;
-        })}
-        {/* {searchResult ? 
-          products.filter((item) => {
-            return item.title.includes(searchResult)
-          }).map((item, index) => {
-            return <ProductCard item={item} key={index} />;
-          })
-        :
+      <Grid container justifyContent="center">
+        {products.length !== 0 ? (
           products.map((item, index) => {
             return <ProductCard item={item} key={index} />;
           })
-        } */}
+        ) : (
+          <Typography mt={10} variant="h4" sx={{ fontWeight: "bold" }}>
+            Item Not Found!
+          </Typography>
+        )}
       </Grid>
     </div>
   );

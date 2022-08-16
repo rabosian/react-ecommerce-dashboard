@@ -5,16 +5,21 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton, AppBar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { authAction } from "../redux/actions/authAction";
 
-const Navbar = ({ user, setUser }) => {
+const Navbar = () => {
   const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth.auth)
   const [mobileOpen, setMobileOpen] = useState(false)
-  // const [inputValue, setInputValue] = useState('')
+  const dispatch = useDispatch()
+  
+  const mobileWidth = 600
 
   const loginClick = () => {
-    if (user) {
+    if (auth) {
+      dispatch(authAction.logout())
       navigate("/");
-      setUser((prev) => !prev);
     } else {
       navigate("/login");
     }
@@ -43,7 +48,7 @@ const Navbar = ({ user, setUser }) => {
   return (
     <div>
       <div className="login-menu">
-        <div onClick={toggleMenu}>
+        <div className="menu-bar" onClick={toggleMenu}>
           <IconButton size="small" sx={{ mt: 2 }}>
             <MenuIcon />
           </IconButton>
@@ -51,7 +56,7 @@ const Navbar = ({ user, setUser }) => {
 
         <div onClick={loginClick}>
           <IconButton size="small" sx={{ mt: 2 }}>
-            <UserIcon /> {user ? "LOGOUT" : "LOGIN"}
+            <UserIcon /> {auth ? "LOGOUT" : "LOGIN"}
           </IconButton>
         </div>
       </div>
@@ -75,11 +80,6 @@ const Navbar = ({ user, setUser }) => {
             type="text"
             placeholder="search for"
             onKeyDown={onSearch}
-            // value={inputValue}
-            // onChange={(e) => {
-            //   setInputValue(e.target.value)
-            //   setSearchResult(e.target.value)
-            // }}
           />
         </div>
       </div>

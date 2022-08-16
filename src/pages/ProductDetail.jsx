@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  Grid,
-  MenuItem,
-  Typography,
-  Button,
-  Select,
-  Box
-} from "@mui/material";
+import { Grid, MenuItem, Typography, Button, Select, Box } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { productAction } from "../redux/actions/productAction";
 
 const ProductDetail = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
-  const [item, setItem] = useState();
+  const item = useSelector((state) => state.product.item)
   const [selectedSize, setSelectedSize] = useState("select");
 
-  const getProductDetail = async () => {
+  const getProductDetail = () => {
     try {
-      let url = `https://my-json-server.typicode.com/rabosian/react-shopping-app
-      /products/${id}`;
-      let response = await fetch(url);
-      let data = await response.json();
-      setItem(data);
+      dispatch(productAction.getProductDetail(id));
     } catch (e) {
       console.log(e);
     }
@@ -52,7 +44,7 @@ const ProductDetail = () => {
             size="small"
             value={selectedSize}
             onChange={handleChange}
-            sx={{width: '200px'}}
+            sx={{ width: "200px" }}
           >
             {item?.size.map((item, index) => {
               return (
@@ -66,10 +58,10 @@ const ProductDetail = () => {
 
         <Button
           style={{
-            marginTop: '15px',
+            marginTop: "15px",
             backgroundColor: "#11262f",
             width: "150px",
-            color: "white"
+            color: "white",
           }}
         >
           Add
