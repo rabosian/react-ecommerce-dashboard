@@ -46,7 +46,7 @@ const ProductDetail = () => {
             onChange={handleChange}
             sx={{ width: "200px" }}
           >
-            {item?.size.map((item, index) => {
+            {item && item?.size.map((item, index) => {
               return (
                 <MenuItem key={index} value={item}>
                   {item}
