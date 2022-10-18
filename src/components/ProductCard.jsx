@@ -33,7 +33,7 @@ const ProductCard = ({ item }) => {
         {item?.new ? "NEW!" : ""}
       </Typography>
       <Typography display="inline-block" fontWeight='bold'>{item?.title}</Typography>
-      <Typography>₩ {item?.price}</Typography>
+      <Typography>$ {item?.price}</Typography>
     </Grid>
   );
 };

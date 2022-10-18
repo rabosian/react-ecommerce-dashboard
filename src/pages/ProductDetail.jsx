@@ -35,7 +35,7 @@ const ProductDetail = () => {
       <Grid item sx={{ mr: 20, pl: 5 }}>
         <Typography variant="h5">{item?.title}</Typography>
         <Typography variant="h6" sx={{ my: 2 }}>
-          ₩ {item?.price}
+          $ {item?.price}
         </Typography>
 
         <Box>
