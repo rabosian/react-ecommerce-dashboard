@@ -24,7 +24,7 @@
           "id":2,
           "img":"https://lp2.hm.com/hmgoepprod?set=source[/7a/49/7a4980a16ce6888b33481763ea1f0a05807f50d1.jpg],origin[dam],category[],type[LOOKBOOK],res[y],hmver[1]&call=url[file:/product/main]",
           "title":"Wide-leg High-Waisted Jeans",
-          "price":39900,
+          "price":39.99,
           "choice":false,
           "new":true,
           "size":["S","M","L"]
@@ -83,8 +83,8 @@
       {
           "id":8,
           "img":"https://lp2.hm.com/hmgoepprod?set=source[/ad/e9/ade9a2fa40f186b2db875ceb35ca279ca99b300a.jpg],origin[dam],category[],type[LOOKBOOK],res[z],hmver[1]&call=url[file:/product/main]",
-          "title":"프린트 크롭트 탑",
-          "price":14900,
+          "title":"Printed Crop Top",
+          "price":14.99,
           "choice":true,
           "new":true,
           "size":["S","M","L"]

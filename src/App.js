@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import ProductAll from "./pages/ProductAll";
 import LoginPage from "./pages/Loginpage";
 import PrivateRoute from "./route/PrivateRoute";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   return (
@@ -13,7 +14,15 @@ function App() {
       <Routes>
         <Route path="/" element={<ProductAll />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/products/:id" element={<PrivateRoute />} />
+        <Route path="/shopping-cart" element={<LoginPage />} />
+        <Route
+          path="/products/:id"
+          element={
+            <PrivateRoute>
+              <ProductDetail />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
