@@ -51,7 +51,7 @@ const Navbar = () => {
         {role === "admin" ? 
           adminSidebar.map((text) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton component="a" href="#">
+              <ListItemButton component="a" href={text.toLowerCase().replace(' ','-')}>
                 <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>

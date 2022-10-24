@@ -6,6 +6,7 @@ import ProductAll from "./pages/ProductAll";
 import LoginPage from "./pages/Loginpage";
 import PrivateRoute from "./route/PrivateRoute";
 import ProductDetail from "./pages/ProductDetail";
+import RegisterProduct from "./pages/admin/RegisterProduct";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/register-product" element={<RegisterProduct />} />
       </Routes>
     </div>
   );
