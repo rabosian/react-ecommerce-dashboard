@@ -4,7 +4,15 @@ import LogoIcon from "@mui/icons-material/Checkroom";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { IconButton, AppBar } from "@mui/material";
+import {
+  IconButton,
+  Drawer,
+  Box,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemButton,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authAction } from "../redux/actions/authAction";
@@ -12,10 +20,54 @@ import { authAction } from "../redux/actions/authAction";
 const Navbar = () => {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth.auth);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const role = useSelector((state) => state.auth.role);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const mobileWidth = 600;
+  const toggleDrawer = (open) => (e) => {
+    if (e.type === "keydown" && (e.key === "Tab" || e.key === "Shift")) {
+      return;
+    }
+    setSidebarOpen(open);
+  };
+
+  const adminSidebar = [
+    "See Products",
+    "Register Product",
+    "Manage Users",
+    "Manage Orders",
+  ];
+
+  const userSidebar = ["go to Cart", "orders","my account"]
+
+  const sidebarComp = (
+    <Box
+      sx={{ width: 250 }}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <List>
+        {role === "admin" ? 
+          adminSidebar.map((text) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton component="a" href="#">
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))
+        :
+          userSidebar.map((text) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton component="a" href="#">
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))
+        }
+      </List>
+    </Box>
+  );
 
   const loginClick = () => {
     if (auth) {
@@ -24,10 +76,6 @@ const Navbar = () => {
     } else {
       navigate("/login");
     }
-  };
-
-  const toggleMenu = () => {
-    setMobileOpen(!mobileOpen);
   };
 
   const onSearch = (e) => {
@@ -49,10 +97,19 @@ const Navbar = () => {
   return (
     <div>
       <div className="login-menu">
-        <div className="menu-bar" onClick={toggleMenu}>
-          <IconButton size="small" sx={{ mt: 2 }}>
-            <MenuIcon />
-          </IconButton>
+        <div className="menu-bar" onClick={toggleDrawer}>
+          <React.Fragment>
+            <IconButton
+              onClick={toggleDrawer(true)}
+              size="small"
+              sx={{ mt: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Drawer open={sidebarOpen} onClose={toggleDrawer(false)}>
+              {sidebarComp}
+            </Drawer>
+          </React.Fragment>
         </div>
 
         <div className="login-cart">

@@ -11,7 +11,10 @@ const Loginpage = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
+    // temp admin login
     dispatch(authAction.login(email, password));
+    dispatch(authAction.adminLogin());
+    // dispatch(authAction.login(email, password));
     navigate("/");
   };
 

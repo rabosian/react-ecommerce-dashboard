@@ -14,4 +14,10 @@ function logout() {
   };
 }
 
-export const authAction = { login, logout };
+function adminLogin() {
+  return (dispatch, getState) => {
+    dispatch(authActions.isAdmin())
+  };
+}
+
+export const authAction = { login, logout, adminLogin };

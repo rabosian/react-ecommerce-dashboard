@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 let initialState = {
   email: "",
   password: "",
+  role: "",
   auth: false,
 };
 
@@ -20,6 +21,9 @@ const authSlice = createSlice({
       state.password = ""
       state.auth = false
     },
+    isAdmin(state, action) {
+      state.role = "admin"
+    }
   }
 })
 
