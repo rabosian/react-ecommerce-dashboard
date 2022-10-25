@@ -20,7 +20,6 @@ const RegisterProduct = () => {
   const [isNew, setIsNew] = useState(true);
   const [price, setPrice] = useState("");
   const [size, setSize] = useState("");
-
   const [selectedCategory, setSelectedCategory] = useState("select");
 
   const dispatch = useDispatch();
@@ -31,6 +30,7 @@ const RegisterProduct = () => {
     console.log("isNew: " + isNew);
     console.log("price: " + price);
     console.log("size: " + size);
+    console.log("category: " + selectedCategory);
   };
 
   const categories = [
@@ -77,7 +77,12 @@ const RegisterProduct = () => {
             placeholder="enter in comma separated string (e.g. S,M,L)"
             onChange={(e) => setSize(e.target.value)}
           />
-          <Box display="flex" mt={2}>
+          <Box
+            display="flex"
+            my={2}
+            alignItems="center"
+            justifyContent="center"
+          >
             <Typography mr={6}>Select Category</Typography>
             <Select
               size="small"
@@ -95,13 +100,15 @@ const RegisterProduct = () => {
             </Select>
           </Box>
 
-          <FormGroup>
-            <FormControlLabel
-              control={<Checkbox defaultChecked />}
-              label="New Product"
-              onChange={() => setIsNew(!isNew)}
-            />
-          </FormGroup>
+          <Box display="flex" justifyContent='center'>
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox defaultChecked />}
+                label="New Product"
+                onChange={() => setIsNew(!isNew)}
+              />
+            </FormGroup>
+          </Box>
 
           <Button
             variant="contained"
